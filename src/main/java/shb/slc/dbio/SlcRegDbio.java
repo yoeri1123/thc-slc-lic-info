@@ -7,8 +7,5 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class SlcInfoDbio {
-    //dbio : database input output(domain)
-    private 
-
+public class SlcRegDbio {
 }
