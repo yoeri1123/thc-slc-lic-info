@@ -8,7 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
@@ -18,22 +17,23 @@ import java.time.LocalDateTime;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="SLC_SW_INFO")
-public class SlcInfoDto {
-    //dbio : database input output(domain)
-    // 라이선스 정보 관리 (SLC_SW_INFO)
+@Table(name="SLC_PUR_CNTRCT")
+public class SlcRegDto {
+    // 라이선스 등록 관리 (SLC_PUR_CNTRCT)
     @Id
-        private String licInfoNo;   //라이선스정보번호
+    private String slcRegNo;    //구매등록번호
+    private String purCntrctNo; //구매계약번호
 
     @Column
-    private String licNm; // 라이선스명
-    private String licDtl; // 라이선스 상세설명
-    private String licMangNm; // 라이선스 담당자명
-    private String licDept; //라이선스 담당부서
-    private String licMfact; //라이선스 제조업체
-    private String licMaint; //라이선스 유지보수업체
-    private String mfactNM; //라이선스 제조업체 영업대표
-    private String maintNm; //라이선스 유지보수업체 영업대표
+    private String purCntrctDt; //구매계약일자
+    private String licNm;   //라이선스명
+    private String licVer;  //라이선스버전정보
+    private String typeNo;  //유형번호
+    private String purUnit; //구매단위
+    private float purCntrctCnt; //도입수량
+
+    private String validBgndt;  //유효기간시작일(기간제경우)
+    private String validEnddt;  //유효기간종료일(기간제경우)
 
     private String regNm; //등록자명
     private String regDt; //등록일시
@@ -49,5 +49,6 @@ public class SlcInfoDto {
     private LocalDateTime udtSdt; //갱신일시(서버시간)
 
     private Timestamp delSdt;   //폐기일시(서버시간)
+
 
 }
