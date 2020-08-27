@@ -1,4 +1,6 @@
 package shb.slc.dao;
 
-public class SlcRegDao {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface SlcRegDao extends JpaRepository<SlcRegDao, String> {
 }
