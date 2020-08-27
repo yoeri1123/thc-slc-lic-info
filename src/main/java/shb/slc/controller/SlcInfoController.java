@@ -37,7 +37,7 @@ public class SlcInfoController {
 
     // lic 정보 관리 수정 api
     @PutMapping
-    public void editLicInfo(@RequestBody SlcInfoDomain slcInfoDomain,
+    public ResponseEntity editLicInfo(@RequestBody SlcInfoDomain slcInfoDomain,
                             @RequestHeader(name = "login-id") String loginId,
                             @RequestHeader(name = "standard-date", required = false) String standardDate,
                             @RequestHeader(name = "gid", required = false) String gid,
@@ -47,7 +47,7 @@ public class SlcInfoController {
 
     //lic 정보 관리 삭제 api
     @DeleteMapping("/{licInfoNo}")
-    public void removeLicInfo(@RequestBody SlcInfoDomain slcInfoDomain,
+    public ResponseEntity removeLicInfo(@RequestBody SlcInfoDomain slcInfoDomain,
                               @RequestHeader(name = "login-id") String loginId,
                               @RequestHeader(name = "standard-date", required = false) String standardDate,
                               @RequestHeader(name = "gid", required = false) String gid,
@@ -57,7 +57,7 @@ public class SlcInfoController {
 
     //lic 기본 정보 상세 조회 api
     @GetMapping("/{licInfoNo}")
-    public SlcInfoDomain slcInfoDomain(@PathVariable String licInfoNo,
+    public ResponseEntity slcInfoDomain(@PathVariable String licInfoNo,
                                        @RequestHeader(name = "login-id") String loginId,
                                        @RequestHeader(name = "standard-date", required = false) String standardDate,
                                        @RequestHeader(name = "gid", required = false) String gid,
@@ -67,7 +67,7 @@ public class SlcInfoController {
 
     //lic 기본정보 조건 및 다건 조회 api
     @GetMapping("/licenses")
-    public Iterable<SlcInfoDomain> slcInfoDomains(@RequestParam Map<String, String> parameters){
+    public ResponseEntity slcInfoDomains(@RequestParam Map<String, String> parameters){
         // 다건조회는 어떻게 하는 게 좋은가..
 
     }
