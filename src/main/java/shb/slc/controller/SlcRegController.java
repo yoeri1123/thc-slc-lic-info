@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import shb.slc.domain.SlcInfoDomain;
 import shb.slc.domain.SlcRegDomain;
 import shb.slc.service.SlcRegService;
 
@@ -47,26 +46,28 @@ public class SlcRegController {
 
         // 라이선스 사용관리 call
 
-
+        return ResponseEntity.status(HttpStatus.CREATED).body(null);
     }
     // -----컬럼 명세서 보고 변수명 정의(08.27) ----------------
     //lic 정보 관리 삭제 api
-    @DeleteMapping("/{licInfoNo}")
-    public ResponseEntity removeLicInfo(@RequestBody SlcRegDomain slcRegDomain,
+    @DeleteMapping("/{slcRegNo}")
+    public ResponseEntity removeLicInfo(@RequestBody SlcRegDomain slcRegNo,
                                         @RequestHeader(name = "login-id") String loginId,
                                         @RequestHeader(name = "standard-date", required = false) String standardDate,
                                         @RequestHeader(name = "gid", required = false) String gid,
                                         @RequestHeader(name = "seq", defaultValue = "0") int seq){
+        return ResponseEntity.status(HttpStatus.CREATED).body(null);
 
     }
 
     //lic 기본 정보 상세 조회 api
-    @GetMapping("/{licInfoNo}")
-    public ResponseEntity slcInfoDomain(@PathVariable String licInfoNo,
+    @GetMapping("/{slcRegNo}")
+    public ResponseEntity slcIzfoDomain(@PathVariable String slcRegNo,
                                         @RequestHeader(name = "login-id") String loginId,
                                         @RequestHeader(name = "standard-date", required = false) String standardDate,
                                         @RequestHeader(name = "gid", required = false) String gid,
                                         @RequestHeader(name = "seq", defaultValue = "0") int seq){
+        return ResponseEntity.status(HttpStatus.CREATED).body(null);
 
     }
 
@@ -74,6 +75,7 @@ public class SlcRegController {
     @GetMapping("/licenses")
     public ResponseEntity slcInfoDomains(@RequestParam Map<String, String> parameters){
         // 다건조회는 어떻게 하는 게 좋은가..
+        return ResponseEntity.status(HttpStatus.CREATED).body(null);
 
     }
 

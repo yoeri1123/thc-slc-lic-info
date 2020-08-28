@@ -32,7 +32,10 @@ public class SlcInfoController {
         if(!slcInfoService.validateCheckGlobalId(gid)){ };  //call Prepost API
 
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(null);
+//        return result ? ResponseEntity.ok().body(new SlcCommonResponse("LIC-I-200", "정상처리 되었습니다.")) :
+//                ResponseEntity.badRequest().body(new SlcCommonResponse("LIC-E-500", "처리 실패했습니다."));
+
+        return ResponseEntity.ok().body("");
     }
 
     // lic 정보 관리 수정 api
@@ -42,7 +45,7 @@ public class SlcInfoController {
                             @RequestHeader(name = "standard-date", required = false) String standardDate,
                             @RequestHeader(name = "gid", required = false) String gid,
                             @RequestHeader(name = "seq", defaultValue = "0") int seq){
-
+        return ResponseEntity.ok().body("");
     }
 
     //lic 정보 관리 삭제 api
@@ -57,20 +60,24 @@ public class SlcInfoController {
 
     //lic 기본 정보 상세 조회 api
     @GetMapping("/{licInfoNo}")
-    public ResponseEntity slcInfoDomain(@PathVariable String licInfoNo,
+    public ResponseEntity getLicInfoDetail(@PathVariable String licInfoNo,
                                        @RequestHeader(name = "login-id") String loginId,
                                        @RequestHeader(name = "standard-date", required = false) String standardDate,
                                        @RequestHeader(name = "gid", required = false) String gid,
                                        @RequestHeader(name = "seq", defaultValue = "0") int seq){
+        return ResponseEntity.ok().body("");
 
     }
 
-    //lic 기본정보 조건 및 다건 조회 api
+    //lic 기본정보 조건 및 다건 조회 api0
     @GetMapping("/licenses")
     public ResponseEntity slcInfoDomains(@RequestParam Map<String, String> parameters){
         // 다건조회는 어떻게 하는 게 좋은가..
+        return ResponseEntity.ok().body("");
 
     }
+
+    //
 
 
 }
