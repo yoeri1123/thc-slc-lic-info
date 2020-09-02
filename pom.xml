@@ -27,16 +27,6 @@
             <artifactId>spring-boot-starter-cache</artifactId>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>com.hazelcast</groupId>-->
-<!--            <artifactId>hazelcast</artifactId>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>com.hazelcast</groupId>-->
-<!--            <artifactId>hazelcast-spring</artifactId>-->
-<!--        </dependency>-->
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -77,6 +67,39 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
         </dependency>
+        <!-- domain <-> dto-->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.3.1.Final</version>
+        </dependency>
+
+        <!-- class <-> json -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+        <!-- Pull in as a traditional dependency -->
+        <dependency>
+            <groupId>com.konghq</groupId>
+            <artifactId>unirest-java</artifactId>
+            <version>3.7.02</version>
+        </dependency>
+
+        <!-- OR as a snazzy new standalone jar with shaded dependencies -->
+        <dependency>
+            <groupId>com.konghq</groupId>
+            <artifactId>unirest-java</artifactId>
+            <version>3.7.02</version>
+            <classifier>standalone</classifier>
+        </dependency>
+
 
     </dependencies>
 
