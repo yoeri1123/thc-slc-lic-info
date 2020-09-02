@@ -117,7 +117,13 @@ public class SlcInfoController {
         // page와 size는 web에서 지정해줘야 함.
 
         // parameters -> 서비스에 다 던져주기..!
+        /* 0902 코드 리뷰이후 질문
+        1) service 딴에서
+        * */
+
         // page 는 web에서 던져줘야 돼.
+//        slcInfoService.getLicInfo()
+
         if(parameters.isEmpty()) { return ResponseEntity.ok().body(slcInfoService.getLicInfoAll(0, 5)); }
         List<SlcInfoDto> slcInfoDtoPage = slcInfoService.getLicInfoQuery(0, 5, parameters, loginId, standardDate, gid, seq);
         return slcInfoDtoPage != null ? ResponseEntity.ok().body(slcInfoDtoPage) :
