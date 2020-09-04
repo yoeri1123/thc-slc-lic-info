@@ -1,6 +1,9 @@
 package shb.slc.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +12,8 @@ import shb.slc.domain.SlcRegDomain;
 import shb.slc.domain.SlcRegUpdDomain;
 import shb.slc.dto.SlcInfoDto;
 import shb.slc.dto.SlcRegDto;
+import shb.slc.mapper.SlcRegMapperImpl;
+import shb.slc.service.SlcInfoService;
 import shb.slc.service.SlcRegService;
 
 import java.util.List;
@@ -21,6 +26,10 @@ public class SlcRegController {
     @Autowired
     SlcRegService slcRegService;
 
+    SlcRegMapperImpl slcRegMapper;
+
+
+
     // lic 등록 관리 등록 api -> 사용관리 call해야함.
     // RequestHeader of required option : no essential parameter (희예선임님께 여쭤보기)
     @PostMapping
@@ -31,8 +40,8 @@ public class SlcRegController {
             @RequestHeader(name = "gid", required = false) String gid,
             @RequestHeader(name = "seq", defaultValue = "0") int seq){
 
-        if(!slcRegService.validateCheckStandardDate(standardDate)){ };//call Prepost API
-        if(!slcRegService.validateCheckGlobalId(gid)){ };  //call Prepost API
+        if(!slcRegService.validateCheckStandardDate(standardDate)){ standardDate = slcRegService.callPrepostStandardDate(); };//call Prepost API
+        if(!slcRegService.validateCheckGlobalId(gid)){ slcRegService.callPrePostGid(); };  //call Prepost API
 
         Boolean result = slcRegService.addLicReg(slcRegDomain, loginId, standardDate, gid, seq);
 
@@ -49,8 +58,8 @@ public class SlcRegController {
                                       @RequestHeader(name = "gid", required = false) String gid,
                                       @RequestHeader(name = "seq", defaultValue = "0") int seq){
 
-        if(!slcRegService.validateCheckStandardDate(standardDate)){ };//call Prepost API
-        if(!slcRegService.validateCheckGlobalId(gid)){ };  //call Prepost API
+        if(!slcRegService.validateCheckStandardDate(standardDate)){ standardDate = slcRegService.callPrepostStandardDate(); };//call Prepost API
+        if(!slcRegService.validateCheckGlobalId(gid)){ slcRegService.callPrePostGid(); };  //call Prepost API
 
         if(!slcRegService.validateCheckLicRegObject(slcRegUpdDomain.getSlcRegNo())){ return ResponseEntity.ok().body(new SlcCommonResponse("LIC-E-406", "업데이트 할 객체를 찾지 못했습니다.")); }
         // 라이선스 사용관리 call
@@ -68,8 +77,8 @@ public class SlcRegController {
                                         @RequestHeader(name = "gid", required = false) String gid,
                                         @RequestHeader(name = "seq", defaultValue = "0") int seq){
 
-        if(!slcRegService.validateCheckStandardDate(standardDate)){ };//call Prepost API
-        if(!slcRegService.validateCheckGlobalId(gid)){ };  //call Prepost API
+        if(!slcRegService.validateCheckStandardDate(standardDate)){ standardDate = slcRegService.callPrepostStandardDate(); };//call Prepost API
+        if(!slcRegService.validateCheckGlobalId(gid)){ slcRegService.callPrePostGid(); };  //call Prepost API
 
         Boolean result = slcRegService.removeLicReg(slcRegNo, loginId, standardDate, gid, seq);
 
@@ -85,8 +94,8 @@ public class SlcRegController {
                                         @RequestHeader(name = "standard-date", required = false) String standardDate,
                                         @RequestHeader(name = "gid", required = false) String gid,
                                         @RequestHeader(name = "seq", defaultValue = "0") int seq){
-        if(!slcRegService.validateCheckStandardDate(standardDate)){ };//call Prepost API
-        if(!slcRegService.validateCheckGlobalId(gid)){ };  //call Prepost API
+        if(!slcRegService.validateCheckStandardDate(standardDate)){ standardDate = slcRegService.callPrepostStandardDate(); };//call Prepost API
+        if(!slcRegService.validateCheckGlobalId(gid)){ slcRegService.callPrePostGid(); };  //call Prepost API
 
         SlcRegDomain slcRegDomain = slcRegService.getLicRegDetail(slcRegNo, loginId, standardDate, gid, seq);
 
@@ -104,11 +113,10 @@ public class SlcRegController {
                                          @RequestHeader(name = "gid", required = false) String gid,
                                          @RequestHeader(name = "seq", defaultValue = "0") int seq){
 
-        if(!slcRegService.validateCheckStandardDate(standardDate)){ };//call Prepost API
-        if(!slcRegService.validateCheckGlobalId(gid)){ };  //call Prepost API
+        if(!slcRegService.validateCheckStandardDate(standardDate)){ standardDate = slcRegService.callPrepostStandardDate(); };//call Prepost API
+        if(!slcRegService.validateCheckGlobalId(gid)){ slcRegService.callPrePostGid(); };  //call Prepost API
         // page와 size는 web에서 지정해줘야 함.
-        if(parameters.isEmpty()) { return ResponseEntity.ok().body(slcRegService.getLicRegAll(0, 5)); }
-        List<SlcRegDto> slcRegDtos = slcRegService.getLicRegQuery(parameters, loginId, standardDate, gid, seq);
+        Page<SlcRegDto> slcRegDtos = slcRegService.getLicRegQuery(0, 5, parameters, loginId, standardDate, gid, seq);
         return slcRegDtos != null ? ResponseEntity.ok().body(slcRegDtos) :
                 ResponseEntity.badRequest().body(new SlcCommonResponse("LIC-E-500", "처리 실패했습니다."));
 

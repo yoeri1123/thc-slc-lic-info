@@ -1,6 +1,7 @@
 package shb.slc.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.querydsl.core.annotations.QueryEntity;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -36,6 +37,11 @@ public class SlcInfoDto {
 
     private String regNm; //등록자명
     private String regDt; //등록일시
+
+    public String getLicNm() {
+        return licNm;
+    }
+
     private String udtNm; //갱신자명
     private String udtDt; //갱신일시
     private String delNm; //폐기자명

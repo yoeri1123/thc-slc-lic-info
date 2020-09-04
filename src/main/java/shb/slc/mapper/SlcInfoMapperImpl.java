@@ -19,7 +19,7 @@ public class SlcInfoMapperImpl implements SlcInfoMapper{
         slcInfoDomain.licDept( slcInfoDto.getLicDept() );
         slcInfoDomain.licMfact( slcInfoDto.getLicMfact() );
         slcInfoDomain.licMaint( slcInfoDto.getLicMaint() );
-        slcInfoDomain.mfactNm( slcInfoDto.getMfactNM() );
+        slcInfoDomain.mfactNm( slcInfoDto.getMfactNm() );
 
         return slcInfoDomain.build();
     }
@@ -36,7 +36,7 @@ public class SlcInfoMapperImpl implements SlcInfoMapper{
         slcInfoDto.licDept( slcInfoDomain.getLicDept() );
         slcInfoDto.licMfact( slcInfoDomain.getLicMfact() );
         slcInfoDto.licMaint( slcInfoDomain.getLicMaint() );
-        slcInfoDto.mfactNM( slcInfoDomain.getMfactNm() );
+        slcInfoDto.mfactNm( slcInfoDomain.getMfactNm() );
         slcInfoDto.maintNm( slcInfoDomain.getMaintNm() );
 
         return slcInfoDto.build();
@@ -52,7 +52,7 @@ public class SlcInfoMapperImpl implements SlcInfoMapper{
         slcInfoDto.setLicDept(slcInfoUpdDto.getLicDept());
         slcInfoDto.setLicMfact(slcInfoUpdDto.getLicMfact());
         slcInfoDto.setLicMaint(slcInfoUpdDto.getLicMaint());
-        slcInfoDto.setMfactNM(slcInfoUpdDto.getMfactNM());
+        slcInfoDto.setMfactNm(slcInfoUpdDto.getMfactNm());
         slcInfoDto.setMaintNm(slcInfoUpdDto.getMaintNm());
 
         return slcInfoDto;
